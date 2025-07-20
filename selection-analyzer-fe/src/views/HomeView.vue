@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <!-- 選單列（置頂固定） -->
+    <!-- 選單列 -->
     <header class="fixed top-0 left-0 right-0 bg-white shadow flex justify-between items-center px-6 py-3 z-50">
       <h1 class="text-lg font-bold text-gray-800">選品潛力分析器</h1>
       <nav class="flex space-x-2">
@@ -22,9 +22,8 @@
       </nav>
     </header>
 
-    <!-- 工作區（位於選單下方） -->
+    <!-- 工作區 -->
     <main class="pt-20 px-6 pb-6 flex-grow bg-white">
-      <!-- 初始為空白畫面 -->
       <router-view />
     </main>
   </div>
