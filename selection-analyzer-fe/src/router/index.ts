@@ -7,6 +7,7 @@ import ProductListView from '../views/ProductListView.vue'
 import ProductEditView from '../views/ProductEditView.vue'
 import ProductDeleteView from '../views/ProductDeleteView.vue'
 import SalesView from '../views/SalesView.vue'
+import SalesImportView from '../views/SalesImportView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -15,7 +16,8 @@ const routes = [
   { path: '/products', name: 'products', component: ProductListView },
   { path: '/products/edit/:id', name: 'edit-product', component: ProductEditView },
   { path: '/products/delete/:id', name: 'delete-product', component: ProductDeleteView },
-  { path: '/sales-view', name: 'sales-view', component: SalesView }
+  { path: '/sales/import', name: 'sales-import', component: SalesImportView },
+  { path: '/sales', name: 'sales', component: SalesView }
 ]
 
 const router = createRouter({

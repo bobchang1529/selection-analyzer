@@ -8,9 +8,9 @@ import {
   getProductById,
   updateProduct,
   deleteProduct,
-  vectorizeProduct,
-  clusterProducts,
-  computePotential,
+  // vectorizeProduct,
+  // clusterProducts,
+  // computePotential,
   generateReport
 } from '../controllers/productController.js'
 
@@ -25,9 +25,9 @@ router.get('/', getProducts)
 router.get('/:id', getProductById)
 router.put('/:id', updateProduct)
 router.delete('/:id', deleteProduct)
-router.post('/vectorize', vectorizeProduct)
-router.post('/cluster', clusterProducts)
-router.post('/potential', computePotential)
+// router.post('/vectorize', vectorizeProduct)
+// router.post('/cluster', clusterProducts)
+// router.post('/potential', computePotential)
 router.get('/report', generateReport)
 
 export default router

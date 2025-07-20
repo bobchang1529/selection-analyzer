@@ -1,22 +1,22 @@
-// === 銷售資料頁：src/views/SalesView.vue ===
+/ ✅ 前端頁面：src/views/SalesView.vue
 <template>
-  <div class="p-6">
-    <h2 class="text-2xl font-bold mb-4">商品歷史銷售資料</h2>
-    <table class="table-auto w-full border border-gray-300">
+  <div class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-bold mb-4">銷售資料查詢</h2>
+    <table class="table-auto w-full border">
       <thead class="bg-gray-100">
         <tr>
-          <th class="border px-4 py-2">商品代碼</th>
-          <th class="border px-4 py-2">週次</th>
-          <th class="border px-4 py-2">銷售數量</th>
-          <th class="border px-4 py-2">銷售金額</th>
+          <th class="border px-2 py-1">商品編號</th>
+          <th class="border px-2 py-1">週次</th>
+          <th class="border px-2 py-1">銷售數量</th>
+          <th class="border px-2 py-1">銷售金額</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="sale in sales" :key="sale.id">
-          <td class="border px-4 py-2">{{ sale.product_code }}</td>
-          <td class="border px-4 py-2">{{ sale.week }}</td>
-          <td class="border px-4 py-2">{{ sale.units_sold }}</td>
-          <td class="border px-4 py-2">{{ sale.sales_amount }}</td>
+        <tr v-for="s in sales" :key="s.id">
+          <td class="border px-2 py-1">{{ s.product_code }}</td>
+          <td class="border px-2 py-1">{{ s.week }}</td>
+          <td class="border px-2 py-1">{{ s.units_sold }}</td>
+          <td class="border px-2 py-1">{{ s.sales_amount }}</td>
         </tr>
       </tbody>
     </table>
