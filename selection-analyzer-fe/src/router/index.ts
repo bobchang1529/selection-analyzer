@@ -1,3 +1,4 @@
+/*
 // === 路由設定：src/router/index.js ===
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
@@ -18,6 +19,34 @@ const routes = [
   { path: '/products/delete/:id', name: 'delete-product', component: ProductDeleteView },
   { path: '/sales/import', name: 'sales-import', component: SalesImportView },
   { path: '/sales', name: 'sales', component: SalesView }
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+})
+
+export default router
+*/
+
+
+// ✅ 選品潛力分析器 - 前端主架構（Vue 3 + Vite + Tailwind CSS）
+// === 路由設定：src/router/index.js ===
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import UploadView from '../views/UploadView.vue'
+import SalesImportView from '../views/SalesImportView.vue'
+import SalesView from '../views/SalesView.vue'
+import ProductListView from '../views/ProductListView.vue'
+import ReportView from '../views/ReportView.vue'
+
+const routes = [
+  { path: '/', name: 'home', component: HomeView },
+  { path: '/upload', name: 'upload', component: UploadView },
+  { path: '/sales-import', name: 'sales-import', component: SalesImportView },
+  { path: '/sales-view', name: 'sales-view', component: SalesView },
+  { path: '/products', name: 'products', component: ProductListView },
+  { path: '/report', name: 'report', component: ReportView }
 ]
 
 const router = createRouter({
