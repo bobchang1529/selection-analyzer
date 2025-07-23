@@ -1,30 +1,54 @@
-// ✅ 前端頁面：src/views/SalesImportView.vue
+
 <template>
-  <div class="p-6 max-w-xl mx-auto">
-    <h2 class="text-xl font-semibold mb-4">匯入銷售資料（Excel）</h2>
-    <input type="file" @change="handleFile" accept=".xlsx" class="mb-4" />
-    <button @click="submit" class="bg-blue-600 text-white px-4 py-2 rounded">上傳</button>
+  <div class="p-8 pt-4 text-sm text-gray-700 font-sans">
+    <h1 class="text-lg font-semibold mb-6 tracking-wide">匯入銷售資料</h1>
+
+    <form @submit.prevent="submitForm" class="max-w-3xl ml-4 rounded p-6">
+      <!-- 銷售資料 -->
+      <div class="mb-6 flex items-center">
+        <label class="w-24 text-sm text-gray-700 mr-2 text-right">銷售資料:</label>
+        <input
+          type="file"
+          accept=".xlsx"
+          @change="handleFileChange"
+          class="border border-gray-300 px-3 py-1 rounded text-sm"
+        />
+        <span class="ml-2 text-xs text-gray-500">(Excel .xlsx)</span>
+      </div>
+
+      <!-- 上傳按鈕 -->
+      <div class="flex justify-center mt-6">
+        <button
+          type="submit"
+          class="bg-gray-100 text-gray-700 text-sm px-6 py-2 rounded hover:bg-gray-200 transition"
+        >
+          上傳
+        </button>
+      </div>
+    </form>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 
-const file = ref(null)
+const salesFile = ref<File | null>(null)
 
-function handleFile(e) {
-  file.value = e.target.files[0]
+const handleFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  salesFile.value = target.files?.[0] || null
 }
 
-async function submit() {
-  if (!file.value) {
+const submitForm = () => {
+  if (!salesFile.value) {
     alert('請選擇檔案')
     return
   }
-  const form = new FormData()
-  form.append('file', file.value)
-  await axios.post('http://localhost:3000/api/sales/import', form)
-  alert('匯入完成')
+
+  const formData = new FormData()
+  formData.append('sales', salesFile.value)
+
+  // TODO: 改為實際 API 呼叫
+  alert('模擬上傳成功')
 }
 </script>

@@ -1,48 +1,76 @@
-// === 上傳頁元件：src/views/UploadView.vue ===
+
+
 <template>
-  <div class="p-6">
-    <h2 class="text-xl font-semibold mb-4">匯入商品資料與圖片</h2>
+  <div class="p-8 pt-4">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">匯入商品資料與圖片</h2>
 
-    <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-700 mb-1">選擇商品資料檔（Excel .xlsx）</label>
-      <input type="file" @change="handleExcelFile" />
-    </div>
+<form @submit.prevent="submit" class=" -gray-300 inline-block">
+      <!-- 商品資料欄位 -->
+      <div class="mb-4 flex items-center">
+        <label for="productFile" class="w-20 text-sm text-gray-700 mr-1">商品資料:</label>         <input
+          type="file"
+          id="productFile"
+          @change="handleProductFileChange"
+          class="mr-2 border border-gray-300 text-sm px-2 py-1 rounded"
+        />
+        <span class="text-gray-400 text-xs">(Excel .xlsx)</span>
+      </div>
 
-    <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-700 mb-1">選擇商品圖片檔（ZIP 壓縮）</label>
-      <input type="file" @change="handleImageZip" />
-    </div>
+      <!-- 商品圖片欄位 -->
+      <div class="mb-4 flex items-center">
+        <label for="imageFile" class="w-20 text-sm text-gray-700 mr-1">商品圖片:</label>         <input
+          type="file"
+          id="imageFile"
+          @change="handleImageFileChange"
+          class="mr-2 border border-gray-300 text-sm px-2 py-1 rounded"
+        />
+        <span class="text-gray-400 text-xs">(ZIP 壓縮)</span>
+      </div>
 
-    <button @click="submitFiles" class="bg-blue-600 text-white px-4 py-2 rounded">上傳</button>
+      <!-- 提交按鈕 -->
+      <div class="flex justify-center mt-6">
+        <button
+          type="submit"
+          class="bg-gray-100 text-gray-700 text-sm px-6 py-2 rounded hover:bg-gray-200"
+        >
+          上傳
+        </button>
+      </div>
+    </form>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 
-const excelFile = ref(null)
-const imageZip = ref(null)
+const productFile = ref<File | null>(null)
+const imageFile = ref<File | null>(null)
 
-function handleExcelFile(e) {
-  excelFile.value = e.target.files[0]
+const handleProductFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (target.files?.length) {
+    productFile.value = target.files[0]
+  }
 }
 
-function handleImageZip(e) {
-  imageZip.value = e.target.files[0]
+const handleImageFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (target.files?.length) {
+    imageFile.value = target.files[0]
+  }
 }
 
-async function submitFiles() {
-  if (!excelFile.value || !imageZip.value) {
-    alert('請同時選擇資料檔與圖片檔')
+const submit = () => {
+  if (!productFile.value || !imageFile.value) {
+    alert('請選擇商品資料與圖片檔案')
     return
   }
 
   const formData = new FormData()
-  formData.append('excel', excelFile.value)
-  formData.append('images', imageZip.value)
+  formData.append('productFile', productFile.value)
+  formData.append('imageFile', imageFile.value)
 
-  await axios.post('http://localhost:3000/api/products/import', formData)
-  alert('匯入完成')
+  // 實際的上傳邏輯（例如使用 fetch 或 axios）
+  alert('已準備好上傳')
 }
 </script>

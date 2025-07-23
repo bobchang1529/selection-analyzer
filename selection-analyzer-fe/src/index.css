@@ -1,0 +1,10 @@
+/* index.css - 基本樣式或 Tailwind 載入 */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 可選擇加入一些自訂樣式 */
+body {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+}
