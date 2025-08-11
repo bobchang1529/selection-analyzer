@@ -1,0 +1,43 @@
+{
+  "folders": [
+    {
+      "path": "selection-analyzer-fe"
+    },
+    {
+      "path": "selection-analyzer-be"
+    }
+  ],
+  "settings": {},
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "pwa-node",
+        "request": "launch",
+        "name": "Debug Node Backend",
+        "cwd": "${workspaceFolder:selection-analyzer-be}",
+        "runtimeExecutable": "node",
+        "program": "${workspaceFolder:selection-analyzer-be}/src/index.js",
+        "skipFiles": ["<node_internals>/**"]
+      },
+      {
+        "type": "pwa-chrome",
+        "request": "launch",
+        "name": "Debug Vue App",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder:selection-analyzer-fe}/src",
+        "runtimeExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "userDataDir": true
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Debug Full Stack",
+        "configurations": [
+          "Debug Node Backend",
+          "Debug Vue App"
+        ]
+      }
+    ]
+  }
+}
