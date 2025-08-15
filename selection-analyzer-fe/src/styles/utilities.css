@@ -1,0 +1,21 @@
+@layer utilities {
+  /* 兩行截斷 …（若需要更多行可另加） */
+  .u-line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* 強制標頭與內容都左對齊（保險用） */
+  .u-text-left-all thead th,
+  .u-text-left-all tbody td { @apply text-left; }
+
+  /* 一些常用寬度工具，可套用在欄位 th/td */
+  .u-w-16 { width: 4rem; }
+  .u-w-24 { width: 6rem; }
+  .u-w-32 { width: 8rem; }
+  .u-w-40 { width: 10rem; }
+  .u-w-48 { width: 12rem; }
+  .u-w-64 { width: 16rem; }
+}

@@ -1,0 +1,31 @@
+@layer base {
+  html, body, #app { height: 100%; }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 搬移自 index.css：全域字體 */
+  body {
+    font-family: var(--plv-font-ui);
+    color: var(--plv-text);
+    background: var(--plv-bg);
+  }
+
+  /* 預設連結 */
+  a { @apply text-blue-600 hover:text-blue-700; }
+
+  /* 表單的細部風格（與 @tailwindcss/forms 可共存） */
+  input, select, textarea { @apply text-sm; }
+
+  /* 表格預設 */
+  table { @apply w-full border-collapse; }
+  thead th { @apply text-left font-semibold text-gray-600 bg-gray-50; }
+  tbody td { @apply text-gray-800 align-middle; }
+
+  /* 捲軸（全域一致） */
+  *::-webkit-scrollbar { height: 12px; width: 12px; }
+  *::-webkit-scrollbar-track { background: #e5e7eb; border-radius: 999px; }
+  *::-webkit-scrollbar-thumb { background: #60a5fa; border-radius: 999px; }
+}

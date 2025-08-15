@@ -1,0 +1,16 @@
+:root {
+  /* 色票 */
+  --plv-bg:            #f7f8fb;
+  --plv-surface:       #ffffff;
+  --plv-text:          #111827;
+  --plv-text-muted:    #4b5563;
+  --plv-border:        #e5e7eb;
+  --plv-primary-600:   #2563eb;
+  --plv-primary-700:   #1d4ed8;
+
+  /* 排版/圓角/陰影 */
+  --plv-font-ui: 'Inter', 'Noto Sans TC', 'Helvetica', 'Arial', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --plv-radius: 12px;
+  --plv-shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --plv-shadow-md: 0 6px 18px rgba(0,0,0,.08);
+}

@@ -1,0 +1,108 @@
+/* ===============================
+   Product table – global layout locks
+   =============================== */
+
+/* 欄寬參數（照你最新指示） */
+:root{
+  --plv-col-turn : 90px;   /* 1) 轉向量 */
+  --plv-col-code : 120px;  /* 商品代號（你沒改數字，維持 120） */
+  --plv-col-name : 120px;  /* 2) 商品名稱 */
+  --plv-col-price: 100px;  /* 3) 價格 */
+  --plv-col-color: 120px;  /* 顏色（維持 120） */
+  --plv-col-big  : 120px;  /* 4) 大分類 */
+
+  --plv-col-mid  : 120px;  /* 5) 中分類（單行省略+hover顯示全部） */
+  --plv-col-desc : 220px;  /* 6) 描述（單行省略+hover顯示全部） */
+
+  --plv-col-date : 120px;  /* 7) 進貨日期 */
+  --plv-col-start: 100px;  /* 8) 期初 */
+  --plv-col-end  : 100px;  /* 9) 期末 */
+  --plv-col-thumb: 120px;  /* 10) 縮圖 */
+  --plv-col-vec  : 100px;  /* 11) 已轉? */
+  --plv-col-act  : 260px;  /* 12) 操作 */
+}
+
+/* 外層容器：內容超寬就出現水平捲軸（14, 同時也支援你的大表格需求） */
+.plv-hscroll{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 讓欄寬「由 colgroup 決定」，內容不會把欄位撐開 */
+.plv-table{
+  table-layout: fixed !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: auto; /* 寬度 = 所有 col 相加；超過容器就水平捲 */
+}
+
+/* 13) 表頭與內容一律左對齊 + 15) 固定單行高度（不換行） */
+.plv-table th,
+.plv-table td{
+  text-align: left !important;
+  vertical-align: middle;
+  white-space: nowrap;              /* 單行 */
+}
+
+/* 統一內距與行高，維持單行高度（可按你喜好微調） */
+.plv-table th .cell,
+.plv-table td .cell{
+  display: block;
+  padding: 10px 12px;
+  line-height: 22px;                /* 單行的行高 */
+  height: 22px;                     /* 鎖住高度避免被內容撐高 */
+  overflow: hidden;                 /* 保險：避免撐開 */
+}
+
+/* 通用：單行省略（中分類、描述等會用到） */
+.plv-ellipsis-1,
+.ellipsis{
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  display: block;
+  width: 100%;
+}
+
+/* 讓有 title 的 cell 懸停時出現原生提示（5,6） */
+/* （不需 JS，只要 template 已綁 :title 就會有原生 tooltip） */
+
+/* === 利用 <colgroup> 鎖欄寬（!important 防止任何套件覆寫） === */
+.plv-table col.col-turn  { width: var(--plv-col-turn)  !important; }  /* 轉向量 */
+.plv-table col.col-code  { width: var(--plv-col-code)  !important; }  /* 商品代號 */
+.plv-table col.col-name  { width: var(--plv-col-name)  !important; }  /* 商品名稱 */
+.plv-table col.col-price { width: var(--plv-col-price) !important; }  /* 價格 */
+.plv-table col.col-color { width: var(--plv-col-color) !important; }  /* 顏色 */
+.plv-table col.col-big   { width: var(--plv-col-big)   !important; }  /* 大分類 */
+
+.plv-table col.col-mid   { width: var(--plv-col-mid)   !important; }  /* 中分類 */
+.plv-table col.col-desc  { width: var(--plv-col-desc)  !important; }  /* 描述 */
+
+.plv-table col.col-date  { width: var(--plv-col-date)  !important; }  /* 進貨日期 */
+.plv-table col.col-start { width: var(--plv-col-start) !important; }  /* 期初 */
+.plv-table col.col-end   { width: var(--plv-col-end)   !important; }  /* 期末 */
+.plv-table col.col-thumb { width: var(--plv-col-thumb) !important; }  /* 縮圖 */
+.plv-table col.col-vec   { width: var(--plv-col-vec)   !important; }  /* 已轉? */
+.plv-table col.col-act   { width: var(--plv-col-act)   !important; }  /* 操作 */
+
+/* 最後保險：再用 nth-child 對應你的 14 欄順序鎖死一次
+   1轉向量 2代號 3名稱 4價格 5顏色 6大分類 7中分類 8描述
+   9進貨日 10期初 11期末 12縮圖 13已轉? 14操作 */
+.plv-table th:nth-child(1), .plv-table td:nth-child(1){ width: var(--plv-col-turn)  !important; }
+.plv-table th:nth-child(2), .plv-table td:nth-child(2){ width: var(--plv-col-code)  !important; }
+.plv-table th:nth-child(3), .plv-table td:nth-child(3){ width: var(--plv-col-name)  !important; }
+.plv-table th:nth-child(4), .plv-table td:nth-child(4){ width: var(--plv-col-price) !important; }
+.plv-table th:nth-child(5), .plv-table td:nth-child(5){ width: var(--plv-col-color) !important; }
+.plv-table th:nth-child(6), .plv-table td:nth-child(6){ width: var(--plv-col-big)   !important; }
+.plv-table th:nth-child(7), .plv-table td:nth-child(7){ width: var(--plv-col-mid)   !important; }
+.plv-table th:nth-child(8), .plv-table td:nth-child(8){ width: var(--plv-col-desc)  !important; }
+.plv-table th:nth-child(9), .plv-table td:nth-child(9){ width: var(--plv-col-date)  !important; }
+.plv-table th:nth-child(10),.plv-table td:nth-child(10){width: var(--plv-col-start) !important; }
+.plv-table th:nth-child(11),.plv-table td:nth-child(11){width: var(--plv-col-end)   !important; }
+.plv-table th:nth-child(12),.plv-table td:nth-child(12){width: var(--plv-col-thumb) !important; }
+.plv-table th:nth-child(13),.plv-table td:nth-child(13){width: var(--plv-col-vec)   !important; }
+.plv-table th:nth-child(14),.plv-table td:nth-child(14){width: var(--plv-col-act)   !important; }
+
+/* 14) 「每頁筆數」靠最右（若你的 header 有 .right 這類容器，讓它自動推到右邊） */
+.list-head{ display:flex; align-items:center; gap:12px; }
+.list-head .right{ margin-left:auto; }

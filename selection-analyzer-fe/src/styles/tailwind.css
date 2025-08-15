@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 設計變數（不包在 layer 裡，避免被 Purge） */
+@import './tokens.css';
+
+/* 我們自己的分層樣式 */
+@import './base.css';
+@import './components.css';
+@import './utilities.css';

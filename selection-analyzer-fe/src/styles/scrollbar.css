@@ -1,0 +1,7 @@
+/* src/styles/scrollbar.css */
+@layer utilities {
+  .u-scrollbar::-webkit-scrollbar { height: 12px; width: 12px; }
+  .u-scrollbar::-webkit-scrollbar-track { background: #e5e7eb; border-radius: 999px; }
+  .u-scrollbar::-webkit-scrollbar-thumb { background: #60a5fa; border-radius: 999px; }
+  .u-scrollbar { scrollbar-color: #60a5fa #e5e7eb; scrollbar-width: thin; }
+}
