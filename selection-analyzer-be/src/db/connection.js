@@ -4,7 +4,7 @@ import mysql from 'mysql2/promise'
 const db = await mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'bob',
+  password: 'bob123',
   database: 'selection_analyzer',
   waitForConnections: true,
   connectionLimit: 10

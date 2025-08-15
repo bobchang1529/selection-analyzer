@@ -127,6 +127,25 @@ CREATE TABLE `product_materials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+-
+-- Table structure for table `product_materials`
+--
+
+DROP TABLE IF EXISTS `product_categories_md`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_categories_md` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int DEFAULT NULL,
+  `category_md_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  KEY `category_md_id` (`category_md_id`),
+  CONSTRAINT `product_category_md_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `product_category_md_ibfk_2` FOREIGN KEY (`category_md_id`) REFERENCES `categories_md` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Table structure for table `product_scores`
 --
@@ -170,21 +189,20 @@ CREATE TABLE `products` (
   `id` int NOT NULL AUTO_INCREMENT,
   `code` varchar(20) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
+  `price` int DEFAULT NULL,
   `color_code` varchar(10) DEFAULT NULL,
   `category_lg_id` int DEFAULT NULL,
-  `category_md_id` int DEFAULT NULL,
   `description` text,
-  `stock_qty` int DEFAULT NULL,
+  `initial_stock_date` date DEFAULT NULL,
+  `initial_stock_qty` int DEFAULT NULL,
+  `current_stock_qty` int DEFAULT NULL,
   `image_path` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`),
   KEY `color_code` (`color_code`),
   KEY `category_lg_id` (`category_lg_id`),
-  KEY `category_md_id` (`category_md_id`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`color_code`) REFERENCES `colors` (`code`),
-  CONSTRAINT `products_ibfk_2` FOREIGN KEY (`category_lg_id`) REFERENCES `categories_lg` (`id`),
-  CONSTRAINT `products_ibfk_3` FOREIGN KEY (`category_md_id`) REFERENCES `categories_md` (`id`)
+  CONSTRAINT `products_ibfk_2` FOREIGN KEY (`category_lg_id`) REFERENCES `categories_lg` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
